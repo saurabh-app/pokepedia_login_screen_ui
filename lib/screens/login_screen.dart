@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:pokepedia_login_screen_ui/widgets/button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal[200],
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
@@ -44,8 +45,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 10),
+              Center(
+                child: Text(
+                  "Enter valid Email & Password",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.teal,
+                  ),
+                ),
+              ),
               const SizedBox(height: 30),
-
               // Email Field
               TextField(
                 controller: emailController,
@@ -54,14 +65,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   labelText: 'Email',
                   hintText: 'Enter your email',
                   prefixIcon: const Icon(Icons.email, color: Colors.black),
-                  suffixIcon: emailController.text.isNotEmpty
-                      ? IconButton(
-                          icon: const Icon(Icons.clear),
-                          onPressed: () {
-                            setState(() => emailController.clear());
-                          },
-                        )
-                      : null,
+                  suffixIcon:
+                      emailController.text.isNotEmpty
+                          ? IconButton(
+                            icon: const Icon(Icons.clear),
+                            onPressed: () {
+                              setState(() => emailController.clear());
+                            },
+                          )
+                          : null,
                   filled: true,
                   fillColor: Colors.white,
                   enabledBorder: OutlineInputBorder(
@@ -70,7 +82,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.yellow, width: 2),
+                    borderSide: const BorderSide(
+                      color: Colors.yellow,
+                      width: 2,
+                    ),
                   ),
                 ),
                 onChanged: (_) => setState(() {}),
@@ -101,30 +116,49 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.yellow, width: 2),
+                    borderSide: const BorderSide(
+                      color: Colors.yellow,
+                      width: 2,
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 20),
 
-              // Login Button
-              ElevatedButton(
-              
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
-                  minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              // Center(
+              //   child: SizedBox(
+              //     width: 100,
+              //     height: 50,
+              //     child: ElevatedButton(
+              //       style: ElevatedButton.styleFrom(
+              //         backgroundColor: Colors.teal,
+              //         shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(12),
+              //         ),
+              //       ),
+              //       onPressed: () {
+              //         // Handle login logic
+              //         print("Email: ${emailController.text}");
+              //         print("Password: ${passwordController.text}");
+              //       },
+              //       child: const Text(
+              //         "Login",
+              //         style: TextStyle(fontSize: 18, color: Colors.yellow),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              LoadingAnimatedButton(
+                child: Text(
+                  "Login",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.yellow,
                   ),
                 ),
-                onPressed: () {
-                  // Handle login logic
-                  print("Email: ${emailController.text}");
-                  print("Password: ${passwordController.text}");
-                },
-                child: const Text("Login", style: TextStyle(fontSize: 18)),
+                onTap: () => {},
               ),
-
               const SizedBox(height: 10),
 
               // Forgot Password
@@ -134,7 +168,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: () {
                     // Navigate to forgot password
                   },
-                  child: Text("Forgot Password?", style: TextStyle(color: Colors.grey[700])),
+                  child: Text(
+                    "Forgot Password?",
+                    style: TextStyle(color: Colors.grey[700]),
+                  ),
                 ),
               ),
 
@@ -149,9 +186,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: const Text(
                       "Register",
-                      style: TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.redAccent,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ],
